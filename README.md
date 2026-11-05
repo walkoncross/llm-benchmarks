@@ -27,7 +27,8 @@
 
 | 基准 | 类型 | 规模 | 状态 | 文档 |
 | --- | --- | --- | --- | --- |
-| SQuAD | 阅读理解 / QA (`qa`) | 1.1 107,785 题 / 2.0 约 150K 题 | 抽取式 QA 已饱和，仍是 RAG 拒答基线 | [squad.md](benchmarks/squad.md) |
+| SQuAD 1.1 | 阅读理解 / QA (`qa`) | 107,785 个问答对（536 篇文章 / 23,215 段，论文口径） | 抽取式 QA 已饱和，官网榜首 F1 95.719（2021-07） | [squad-v1-1.md](benchmarks/squad-v1-1.md) |
+| SQuAD 2.0 | 阅读理解 / QA (`qa`) | 约 150K 题，其中 53,775 条不可回答 | 已饱和（榜单末次新条目约 2022-05），仍是 RAG 拒答基线 | [squad-v2-0.md](benchmarks/squad-v2-0.md) |
 | HotpotQA | 阅读理解 / QA (`qa`) | 112,779 题，dev / test 各 7,405 | Distractor 区分度下降，仍适合作 RAG 证据归因 sanity check | [hotpotqa.md](benchmarks/hotpotqa.md) |
 | SWE-bench | 代码修复 (`code`) | Full 2,294 / Verified 500 | Verified 已饱和，主信号转向 Pro / Live | [swe-bench.md](benchmarks/swe-bench.md) |
 | CL-bench | 上下文学习 (`context`) | 500 上下文 / 1,899 任务 / 31,607 rubrics | 前沿模型 Overall 最高 27.9%，远未饱和 | [cl-bench.md](benchmarks/cl-bench.md) |
@@ -36,7 +37,7 @@
 | LiveBench v1 | 抗污染客观题 (`qa`) | 23 任务 / 7 类（末次 release 2026-06-25；题库未完整公开） | 已冻结，官网已切换至 2.0；分数须绑定 release 日期 | [livebench-v1.md](benchmarks/livebench-v1.md) |
 | LiveBench 2.0 | Agent 端到端 (`agent`) | 471 任务 / 7 suite（release 20261025） | 加权 Overall（2026-10-25），官网当前版 | [livebench-v2.md](benchmarks/livebench-v2.md) |
 
-一手数据快照见 [sources/workbuddy-bench/README.md](sources/workbuddy-bench/README.md)、[sources/livebench-v1/README.md](sources/livebench-v1/README.md) 与 [sources/livebench-v2/README.md](sources/livebench-v2/README.md)。
+一手数据快照见 [sources/workbuddy-bench/README.md](sources/workbuddy-bench/README.md)、[sources/livebench-v1/README.md](sources/livebench-v1/README.md) 与 [sources/livebench-v2/README.md](sources/livebench-v2/README.md)。SQuAD 两版无快照文件入库，来源版本与未入库边界见 [sources/squad-v1-1/README.md](sources/squad-v1-1/README.md) 与 [sources/squad-v2-0/README.md](sources/squad-v2-0/README.md)。
 
 ## 阅读约定
 
