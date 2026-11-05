@@ -1,0 +1,19 @@
+rank,model,slug,creator,index_display,index_raw,cost_per_task_usd,time_per_task_min,first_answer_token_s,open_weights,aa_briefcase_elo,automationbench_aa_pct,terminal_bench_science_pct,frontiercode_2_0_pct,terminal_bench_4_0_pct,critpt_v2_hard_pct,aa_omniscience_net,aa_omniscience_accuracy_pct,aa_omniscience_non_hallucination_pct,hle_diamond_pct,gdp_pdf_allpass_pct,notes
+1,Gemini 4 Carbon (High),gemini-4-carbon,Google,60,60.0257,7.76,30.3,65.94,false,1610.63,77.8,64.8,40.6,65.2,69.0,53.5,58.3,88.6,69.1,28.4,
+2,"Claude Opus 5.5 (Max, Default Fallback)",claude-opus-5-5,Anthropic,59,59.1060,10.04,26.2,342.98,false,1799.89,69.5,59.0,46.4,59.6,68.0,48.1,65.5,49.7,67.9,26.2,
+3,Gemini 4 Carbon (Medium),gemini-4-carbon-medium,Google,58,58.2588,6.59,22.8,22.24,false,1601.74,77.6,62.4,39.5,60.6,69.0,46.8,48.9,95.8,67.4,29.6,
+4,"Claude Opus 5.5 (Xhigh, Default Fallback)",claude-opus-5-5-xhigh,Anthropic,57,57.4447,6.05,16.0,67.16,false,1759.61,65.0,61.9,43.8,59.6,67.5,43.1,65.5,35.0,64.0,26.6,
+5,GPT-6 Astra (Max),gpt-6-astra,OpenAI,57,56.8539,6.24,19.0,205.76,false,1568.59,68.5,63.3,42.4,59.1,70.5,42.4,61.6,50.2,63.8,31.0,
+6,GPT-6 Astra (Xhigh),gpt-6-astra-xhigh,OpenAI,55,55.3057,3.66,9.4,103.41,false,1543.53,67.2,54.8,41.4,59.6,71.0,43.7,61.0,55.4,61.5,32.2,
+7,GPT-6 Astra (High),gpt-6-astra-high,OpenAI,55,54.8498,3.24,8.1,40.64,false,1504.54,66.6,59.5,40.1,54.0,71.5,44.6,61.1,57.5,59.3,31.0,
+8,GPT-6.1 Sol (Max),gpt-6-1-sol,OpenAI,55,54.6087,1.27,21.2,165.13,false,1555.09,64.9,58.1,40.6,56.1,69.5,42.0,61.8,48.1,58.8,31.0,
+9,"Claude Sonnet 5.5 (Max, Default Fallback)",claude-sonnet-5-5,Anthropic,55,54.5413,10.02,30.7,253.79,false,1813.33,71.8,53.3,41.7,63.6,59.0,30.5,51.5,56.7,53.3,25.8,
+10,Gemini 4 Carbon (Low),gemini-4-carbon-low,Google,54,54.2206,7.19,46.6,8.01,false,1567.14,63.5,61.9,29.6,62.6,65.0,39.2,49.2,80.2,61.9,28.6,
+14,GPT-6.1 Terra (Max),gpt-6-1-terra,OpenAI,51,51.3265,0.96,13.1,158.68,false,1401.36,60.2,57.6,42.3,55.6,68.0,29.6,47.6,65.5,47.3,28.6,前 10 名中最便宜档位之一
+17,Muse Wonder Full (Max),muse-wonder-full,Meta,50,50.0772,,,,false,1729.32,71.3,37.1,37.8,57.1,56.5,30.6,41.0,82.4,48.5,32.6,官网未给 cost/time
+20,"Claude Fable 5.1 (Max, Default Fallback)",claude-fable-5-1,Anthropic,49,49.1602,12.99,22.2,160.14,false,1669.49,59.4,43.3,31.6,52.0,52.5,46.3,68.4,30.0,60.1,26.2,头部配置中最贵档位
+23,Kimi K3.1 Pro,kimi-k3-1-pro,Kimi,46,46.4526,3.68,36.0,149.26,false,1674.81,73.3,34.3,25.5,67.2,49.5,29.9,48.9,62.7,37.3,31.4,权重未发布
+34,Claude Haiku 5.5 (Max),claude-haiku-5-5,Anthropic,36,36.4845,0.41,14.6,178.49,false,1574.12,35.4,20.0,34.9,32.8,43.5,12.3,34.7,65.8,29.6,20.8,高于所有已发布权重开源模型
+42,DeepSeek V4.1 Flash 1017 (Max),deepseek-v4-1-flash-1017,DeepSeek,33,32.5896,0.60,13.3,50.78,true,1570.42,66.6,12.9,28.5,33.8,25.0,0.9,39.6,35.9,25.3,17.2,已发布权重的最高开源模型
+43,GLM-5.3 (Max),glm-5-3,Z AI,32,31.6534,5.01,30.8,90.99,true,1502.84,62.2,9.5,21.6,41.9,33.5,6.0,32.3,61.1,17.9,11.2,
+49,MiMo-V2.6-Pro,mimo-v2-6-pro,Xiaomi,30,29.8898,0.26,45.4,50.54,true,1511.88,58.6,5.7,24.0,34.8,34.0,-4.5,34.8,39.8,15.2,19.2,

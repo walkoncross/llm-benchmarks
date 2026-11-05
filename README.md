@@ -40,8 +40,9 @@
 | Terminal-Bench 4.0 | 2026-08-28 | Agent 端到端 (`agent`) | 66 个终端任务 / 7 类；每题 5 次 trial（330 trials） | 连续基准（语义化版本）；官方榜首 Opus 5.5 64.85%，Epoch 评审为 Flawed | [terminal-bench-v4-0.md](benchmarks/terminal-bench-v4-0.md) |
 | LiveBench v1 | 2024-06-12 | 抗污染客观题 (`qa`) | 23 任务 / 7 类（末次 release 2026-06-25；题库未完整公开） | 已冻结，官网已切换至 2.0；分数须绑定 release 日期 | [livebench-v1.md](benchmarks/livebench-v1.md) |
 | LiveBench 2.0 | 2026-10-14 | Agent 端到端 (`agent`) | 471 任务 / 7 suite（release 20261025） | 加权 Overall（2026-10-25），官网当前版 | [livebench-v2.md](benchmarks/livebench-v2.md) |
+| AA Intelligence Index v5.0 | 2026-10-27 | 综合能力聚合 (`agent`) | 9 项评测；知识工作、编程、科学、通用四类各 25%；60% 权重为私有测试集 | v5.0.1 现行（2026-11）；跨版本分数不可直接比 | [aa-intelligence-index-v5.md](benchmarks/aa-intelligence-index-v5.md) |
 
-一手数据快照见 [sources/workbuddy-bench/README.md](sources/workbuddy-bench/README.md)、[sources/livebench-v1/README.md](sources/livebench-v1/README.md)、[sources/livebench-v2/README.md](sources/livebench-v2/README.md)、[sources/deepswe/README.md](sources/deepswe/README.md) 与 [sources/terminal-bench-v4-0/README.md](sources/terminal-bench-v4-0/README.md)、[sources/frontiercode-v2/README.md](sources/frontiercode-v2/README.md)。SQuAD 两版无快照文件入库，来源版本与未入库边界见 [sources/squad-v1-1/README.md](sources/squad-v1-1/README.md) 与 [sources/squad-v2-0/README.md](sources/squad-v2-0/README.md)。
+一手数据快照见 [sources/workbuddy-bench/README.md](sources/workbuddy-bench/README.md)、[sources/livebench-v1/README.md](sources/livebench-v1/README.md)、[sources/livebench-v2/README.md](sources/livebench-v2/README.md)、[sources/deepswe/README.md](sources/deepswe/README.md)、[sources/frontiercode-v2/README.md](sources/frontiercode-v2/README.md)、[sources/terminal-bench-v4-0/README.md](sources/terminal-bench-v4-0/README.md)、[sources/mmlu/README.md](sources/mmlu/README.md) 与 [sources/aa-intelligence-index-v5/README.md](sources/aa-intelligence-index-v5/README.md)。SQuAD 两版无快照文件入库，来源版本与未入库边界见 [sources/squad-v1-1/README.md](sources/squad-v1-1/README.md) 与 [sources/squad-v2-0/README.md](sources/squad-v2-0/README.md)。
 
 ## 阅读约定
 
