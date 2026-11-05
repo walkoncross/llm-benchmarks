@@ -1,0 +1,35 @@
+{
+  "source": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro",
+  "retrieved": "2026-11-05",
+  "id": "TIGER-Lab/MMLU-Pro",
+  "sha": "b189ec765aa7ed75c8acfea42df31fdae71f97be",
+  "createdAt": "2024-05-08T13:36:21.000Z",
+  "lastModified": "2026-05-02T06:26:05.000Z",
+  "license": "mit",
+  "downloads": 385795,
+  "likes": 601,
+  "splits": [
+    {
+      "name": "validation",
+      "num_bytes": 61242,
+      "num_examples": 70
+    },
+    {
+      "name": "test",
+      "num_bytes": 8714663,
+      "num_examples": 12032
+    }
+  ],
+  "features": [
+    "question_id",
+    "question",
+    "options",
+    "answer",
+    "answer_index",
+    "cot_content",
+    "category",
+    "src"
+  ],
+  "download_size": 121157475,
+  "dataset_size": 8775905
+}
