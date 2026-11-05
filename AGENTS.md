@@ -10,18 +10,21 @@ AGENTS.md                         本文件，仓库规范
 .gitignore / .editorconfig        忽略规则与编辑器格式约定
 benchmarks/<slug>.md              基准文档，唯一存放位置
 sources/<slug>/                   一手数据快照 + README.md
+.claude/skills/benchmark-research/SKILL.md
+                                  基准调研流程 skill（Claude Code 自动加载；其他 harness 按 §6 读取）
 ```
 
 - 基准文档一律放 `benchmarks/`，**不在根目录新增文档**。
 - `sources/` 只收小体积、可离线复核的快照（如官网 `data.js`）。上游源码、任务数据集、归档包、Docker 镜像一律不入库，在对应文档里写明复现命令与体积。
 - 每个 `sources/<slug>/` 必须带 `README.md`，记录来源 URL、版本、抓取/入库日期、用途、未入库边界。
 - 多版本基准按 §2.1 拆成 `benchmarks/<slug>-v<N>.md` 与 `sources/<slug>-v<N>/`，不保留无版本后缀的主文档。
+- 新增基准前的调研流程见 §6；skill 正文在 `.claude/skills/benchmark-research/SKILL.md`，Claude Code 自动发现，其他 harness 直接读取该文件。
 
 ## 2. 文件命名
 
 - 格式：`benchmarks/<slug>.md`，`slug` 为小写 kebab-case，字符集 `[a-z0-9-]`，与 front matter 的 `slug` 字段完全一致。
 - **不带日期前缀**。日期属于 front matter，文档更新不应改变文件名。
-- 重命名必须同步更新全仓引用：README 索引、其他文档的 Markdown 链接、正文中的路径文本。改完执行第 6 节校验清单。
+- 重命名必须同步更新全仓引用：README 索引、其他文档的 Markdown 链接、正文中的路径文本。改完执行第 7 节校验清单。
 
 ### 2.1 多版本基准的拆分
 
@@ -44,7 +47,7 @@ sources/<slug>/                   一手数据快照 + README.md
 - **索引**：README 每个版本**各占一行**，规模 / 状态与各自 front matter 逐字一致。
 - **快照**：`sources/<slug>-v<N>/` 与文档一一对应、各带 `README.md`，不同版本不共用目录；上游老端点若已下线，在对应 README 写明「未取到」。
 - **交叉引用**：共用背景（品牌、发布方、设计原则沿革）只在**一篇**里完整叙述，其余版本用同目录相对链接回指，不复制；两篇的口径警示块都要写明「与另一版本分数不可比」。
-- **single source of truth**：同一事实只在一处维护；拆完同步全仓旧文件名引用（README、其他文档链接、正文路径），并执行第 6 节校验清单。
+- **single source of truth**：同一事实只在一处维护；拆完同步全仓旧文件名引用（README、其他文档链接、正文路径），并执行第 7 节校验清单。
 
 **暂不拆的情形**：差别未达门槛，或旧版本内容不足以独立支撑一个章节。此时先作为单文档里的沿革注记，等补到可独立成节后再拆。
 
@@ -86,7 +89,38 @@ YAML 块置于文件最前，字段顺序固定：
 - 榜单、模型名单等时效性数据必须带版本号与日期；未核验到的部分写明「未取到 / 未按同样深度核验」。
 - 跨文档一致性：新增或修订基准后，同步检查 README 索引、相关文档的交叉引用、以及正文里的「第 N 节」自引用。
 
-## 6. 提交前校验清单
+## 6. 新基准调研流程
+
+输入是一个 benchmark 名称，输出是 `benchmarks/<slug>.md`（必要时加 `sources/<slug>/` 快照）与 README 索引行。完整操作步骤写在跨 harness 共用的 skill 中：`.claude/skills/benchmark-research/SKILL.md`。Claude Code 会按 `description` 自动加载；WorkBuddy、Codex 等 harness 在开始调研前先读取该文件并按步骤执行。
+
+### 6.1 先查聚合平台
+
+先到下列平台找到该基准条目，拿它提供的官方链接、论文、GitHub 与相关资源线索，再逐个回一手来源核验。聚合平台是**二手整理**，只用于定位与交叉检查，不作为分数口径或一手事实的来源。
+
+| 平台 | 入口 | 特点 |
+| --- | --- | --- |
+| BenchLM | https://benchlm.ai/benchmarks | 目录（2026-11-05 访问时为 739 个 benchmark / 11 类），每个基准附榜单、方法论与论文入口 |
+| LLMLearner | https://llmlearner.com/benchmarks | 按能力、活跃度、覆盖度组织，含发布方与报分模型 |
+| DataLearner | https://www.datalearner.com/benchmarks | 中文主流基准榜单，含难度、类别与发布机构 |
+
+### 6.2 必须核到的四类链接
+
+| # | 类型 | 要求 |
+| --- | --- | --- |
+| 1 | 官方介绍 / 榜单 | 官方项目页或 leaderboard；记录版本号与访问日期 |
+| 2 | GitHub | 官方仓库（数据集与评测框架分开列）；只认论文或官网链过去的仓库 |
+| 3 | 论文 | arXiv、ACL Anthology、OpenReview 等原始页面，不引二手博客 |
+| 4 | 相关资源 | 数据集（Hugging Face / Zenodo / 官方下载）、工具包（eval harness、Docker 镜像）等 |
+
+四类中确实不存在的（如无独立仓库），在文档里写明「未找到 / 未取到」，不得用相近项凑数或编造 URL。
+
+### 6.3 落库与校验
+
+- 文档结构、front matter、口径警示块与参考来源写法遵循 §3–§5；`sources` 字段优先放官方站、论文、GitHub。
+- 参考来源逐条标注类型（官方站 / GitHub / 论文 / 数据集 / 工具包），二手来源与未取到的链接显式注明。
+- 完成后同步 README 索引，并按第 7 节校验清单逐项核对；`git commit` 仍只在用户显式指令后执行。
+
+## 7. 提交前校验清单
 
 | # | 检查项 | 对应规范 | 校验方式 |
 | --- | --- | --- | --- |

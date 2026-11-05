@@ -9,8 +9,19 @@
 | `benchmarks/` | 基准文档，一篇一个 `<slug>.md`，按 front matter 的 `category` 分类 |
 | `sources/` | 可离线复核的一手数据快照，每个子目录带来源与版本说明 |
 | `AGENTS.md` | 命名、格式、引用口径与提交前校验清单 |
+| `.claude/skills/` | 跨 harness 复用的 Agent skill（如基准调研流程） |
 | `.gitignore` / `.editorconfig` | 忽略规则与编辑器格式约定 |
 | `README.md` | 本文件：索引与阅读约定 |
+
+## 聚合平台
+
+调研新基准时先查下列平台，拿到定位、分类与上下游链接，再回一手来源（官网 / GitHub / 论文）核验。平台内容是二手整理，**分数与结论不直接当作一手来源引用**。
+
+| 平台 | 覆盖 | 用途 |
+| --- | --- | --- |
+| [BenchLM](https://benchlm.ai/benchmarks) | 目录（2026-11-05 访问时为 739 个 benchmark / 11 类，含知识、代码、数学、推理、Agent 等），每个基准附榜单、方法论与论文入口 | 英文基准的横向索引 |
+| [LLMLearner](https://llmlearner.com/benchmarks) | 按能力、活跃度与覆盖度组织的 LLM 评测基准，说明测什么、谁发布、哪些模型报过分 | 判断基准是否仍活跃、谁在报分 |
+| [DataLearner](https://www.datalearner.com/benchmarks) | 中文主流评测基准榜单（MMLU、GSM8K、HumanEval、SWE-bench、AIME 等），附难度、类别与发布机构 | 中文对照与快速定位 |
 
 ## 基准索引
 
@@ -33,4 +44,6 @@
 - 跨口径的数字不直接比较；只看同一 harness 下的相对排序。
 - 引用上游代码 / 配置时行号精确锚定，时效性数据带版本号与日期。
 - 同一基准差别较大的多个版本各占一行索引、各自标注口径，分数不可跨版本比较（拆分规则见 [AGENTS.md](AGENTS.md) §2.1）。
+- 调研新基准时先查上面的聚合平台定位，再以官网 / GitHub / 论文为准；聚合平台属二手整理，不作为分数口径的一手来源。
+- 调研与写作流程见 [AGENTS.md](AGENTS.md) §6；Claude Code 中可直接触发 `benchmark-research` skill。
 - 新增或修订文档前先读 [AGENTS.md](AGENTS.md)，按其提交前校验清单逐项核对。
