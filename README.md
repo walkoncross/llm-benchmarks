@@ -22,8 +22,9 @@
 | CL-bench | 上下文学习 (`context`) | 500 上下文 / 1,899 任务 / 31,607 rubrics | 前沿模型 Overall 最高 27.9%，远未饱和 | [cl-bench.md](benchmarks/cl-bench.md) |
 | IFBench | 精确指令遵循 (`instruction`) | 300 prompts / 58 个 OOD 约束 / 344 个约束实例 | 未饱和，统计功效受限（有效样本 58 个约束） | [ifbench.md](benchmarks/ifbench.md) |
 | WorkBuddy Bench | Agent 端到端 (`agent`) | 260 题（Code 80 / Web 70 / Office 50 / Security 60） | 四个子集评分口径独立，子集间分数不可比 | [workbuddy-bench.md](benchmarks/workbuddy-bench.md) |
+| LiveBench | Agent 端到端 (`agent`) | 2.0：471 任务 / 7 suite；v1：18→23 任务 / 6→7 类 | 2.0 加权 Overall（2026-10-25），与 v1 分数不可跨版本比较 | [livebench.md](benchmarks/livebench.md) |
 
-一手数据快照见 [sources/workbuddy-bench/README.md](sources/workbuddy-bench/README.md)。
+一手数据快照见 [sources/workbuddy-bench/README.md](sources/workbuddy-bench/README.md) 与 [sources/livebench/README.md](sources/livebench/README.md)。
 
 ## 阅读约定
 
