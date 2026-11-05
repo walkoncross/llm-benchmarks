@@ -1,6 +1,6 @@
-# LiveBench 一手数据快照
+# LiveBench 2.0 一手数据快照
 
-本目录随仓库入库，用于离线复核 [benchmarks/livebench.md](../../benchmarks/livebench.md) 第 4 节「评测方式与计分链路」及第 7 节「复现与快速上手」。快照为官网公开的静态数据文件**只读副本**，与上游逐字节一致；更新时需连同 release 号、抓取日期与正文数字一起改。
+本目录只对应**2.0**（`benchmarks/livebench-v2.md`）；v1 的一手快照在 `sources/livebench-v1/`。本目录用于离线复核 [benchmarks/livebench-v2.md](../../benchmarks/livebench-v2.md) 第 4 节「评测方式与计分链路」及第 7 节「复现与快速上手」。快照为官网公开的静态数据文件**只读副本**，与上游逐字节一致；更新时需连同 release 号、抓取日期与正文数字一起改。
 
 | 文件 | 上游来源 | 版本 / 日期 | 用途 |
 | --- | --- | --- | --- |
@@ -17,11 +17,11 @@
 
 ## 入库边界
 
-按 `AGENTS.md` §1，以下材料**不入库**，复现命令见 benchmarks/livebench.md 第 7 节：
+按 `AGENTS.md` §1，以下材料**不入库**，复现命令见 benchmarks/livebench-v2.md 第 7 节：
 
 - 官网前端 bundle `static/js/main.1e1ce12d.js`（约 386 KB，单行压缩产物，含 React 运行时，非数据文件）。正文以函数名锚定，不编造行号。
-- v1 题库与评测框架（`huggingface.co/datasets/livebench`、`github.com/LiveBench/LiveBench`）；官方说明 agentic coding 任务的 Docker 镜像合计可达 150 GB。
+- v1 题库、评测框架、论文与 Docker 镜像（官方说明 agentic coding 镜像合计可达 150 GB）：入库边界见 `sources/livebench-v1/README.md`，本目录不重复收录。
 - 2.0 的完整题库、隐藏测试程序、隐藏参考数据与任务专属 rubric：官网**不公开**。
-- 2.0 的论文 / 技术报告：官网未给出，核验时**未取到**；仅 v1 有 ICLR 2025 Spotlight 论文（arXiv:2406.19314）。
+- 2.0 的论文 / 技术报告：官网未给出，核验时**未取到**；v1 的 ICLR 2025 Spotlight 论文（arXiv:2406.19314）见 `benchmarks/livebench-v1.md`。
 
 时效性提醒：榜单分数与成本列会随实例刷新变动，同一日两次抓取曾得到 Claude Fable 5.1 成本 `$7.406` 与 `$6.904` 两个值；引用时必须带 release 号与抓取日期。

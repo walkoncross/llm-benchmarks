@@ -22,13 +22,15 @@
 | CL-bench | 上下文学习 (`context`) | 500 上下文 / 1,899 任务 / 31,607 rubrics | 前沿模型 Overall 最高 27.9%，远未饱和 | [cl-bench.md](benchmarks/cl-bench.md) |
 | IFBench | 精确指令遵循 (`instruction`) | 300 prompts / 58 个 OOD 约束 / 344 个约束实例 | 未饱和，统计功效受限（有效样本 58 个约束） | [ifbench.md](benchmarks/ifbench.md) |
 | WorkBuddy Bench | Agent 端到端 (`agent`) | 260 题（Code 80 / Web 70 / Office 50 / Security 60） | 四个子集评分口径独立，子集间分数不可比 | [workbuddy-bench.md](benchmarks/workbuddy-bench.md) |
-| LiveBench | Agent 端到端 (`agent`) | 2.0：471 任务 / 7 suite；v1：18→23 任务 / 6→7 类 | 2.0 加权 Overall（2026-10-25），与 v1 分数不可跨版本比较 | [livebench.md](benchmarks/livebench.md) |
+| LiveBench v1 | 抗污染客观题 (`qa`) | 23 任务 / 7 类（末次 release 2026-06-25；题库未完整公开） | 已冻结，官网已切换至 2.0；分数须绑定 release 日期 | [livebench-v1.md](benchmarks/livebench-v1.md) |
+| LiveBench 2.0 | Agent 端到端 (`agent`) | 471 任务 / 7 suite（release 20261025） | 加权 Overall（2026-10-25），官网当前版 | [livebench-v2.md](benchmarks/livebench-v2.md) |
 
-一手数据快照见 [sources/workbuddy-bench/README.md](sources/workbuddy-bench/README.md) 与 [sources/livebench/README.md](sources/livebench/README.md)。
+一手数据快照见 [sources/workbuddy-bench/README.md](sources/workbuddy-bench/README.md)、[sources/livebench-v1/README.md](sources/livebench-v1/README.md) 与 [sources/livebench-v2/README.md](sources/livebench-v2/README.md)。
 
 ## 阅读约定
 
 - 分数一律标注**口径**：数据集 split、评测 harness、是否厂商自报。
 - 跨口径的数字不直接比较；只看同一 harness 下的相对排序。
 - 引用上游代码 / 配置时行号精确锚定，时效性数据带版本号与日期。
+- 同一基准差别较大的多个版本各占一行索引、各自标注口径，分数不可跨版本比较（拆分规则见 [AGENTS.md](AGENTS.md) §2.1）。
 - 新增或修订文档前先读 [AGENTS.md](AGENTS.md)，按其提交前校验清单逐项核对。
