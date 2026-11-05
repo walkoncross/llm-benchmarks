@@ -1,0 +1,67 @@
+{
+  "source_url": "https://openaipublic.blob.core.windows.net/simple-evals/simple_qa_test_set.csv",
+  "referenced_by": "openai/simple-evals simpleqa_eval.py SimpleQAEval.__init__ pandas.read_csv(...)",
+  "fetched": "2026-11-05",
+  "verified": "2026-11-05",
+  "file_bytes": 2012910,
+  "sha256": "feee3f7e7db3617e94e8fcf1977b756ec420ef8568f4e0fcbbe0e92e9d5fc032",
+  "columns": [
+    "metadata",
+    "problem",
+    "answer"
+  ],
+  "row_count": 4326,
+  "topic_counts": {
+    "Science and technology": 858,
+    "Politics": 709,
+    "Art": 550,
+    "Other": 475,
+    "Geography": 424,
+    "Sports": 368,
+    "Music": 341,
+    "TV shows": 293,
+    "History": 173,
+    "Video games": 135
+  },
+  "answer_type_counts": {
+    "Date": 1418,
+    "Person": 1041,
+    "Other": 777,
+    "Number": 663,
+    "Place": 427
+  },
+  "answer_type_pct": {
+    "Date": 32.8,
+    "Person": 24.1,
+    "Other": 18.0,
+    "Number": 15.3,
+    "Place": 9.9
+  },
+  "urls_per_question": {
+    "2": 193,
+    "3": 934,
+    "4": 3134,
+    "5": 58,
+    "6": 6,
+    "7": 1
+  },
+  "sample": {
+    "problem": "Who received the IEEE Frank Rosenblatt Award in 2010?",
+    "answer": "Michio Sugeno"
+  },
+  "paper_cross_check": {
+    "top_three_topics": [
+      858,
+      709,
+      550
+    ],
+    "answer_type_pct_paper": {
+      "Date": 32.8,
+      "Person": 24.1,
+      "Other": 18.0,
+      "Number": 15.3,
+      "Place": 9.9
+    }
+  },
+  "note": "Derived locally from the official CSV; dataset body intentionally NOT committed per AGENTS.md §1."
+}

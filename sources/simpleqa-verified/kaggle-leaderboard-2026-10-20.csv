@@ -1,0 +1,15 @@
+﻿rank,model,organization,score_pct,ci_pct
+1,Gemini 3.1 Pro Preview,Google,77.5,2.6
+2,GPT-6 Astra,OpenAI,75.8,2.6
+3,Gemini 4 Argon,Google,75.6,2.6
+4,Gemini 3.8 Flash,Google,74.6,2.7
+5,GPT-6.1 Sol,OpenAI,73.8,2.8
+6,Gemini 3 Pro Preview,Google,72.1,2.9
+7,GPT-5.6 Sol,OpenAI,69.2,2.9
+8,GPT-6 Sol,OpenAI,64.4,3.0
+9,Claude Opus 5,Anthropic,63.3,3.2
+10,Grok 4.7,xAI,59.4,3.2
+11,Grok 4.5,xAI,53.8,3.2
+12,Qwen 3 235B A22B Thinking,QwenLM,53.7,3.4
+13,Grok 4.6,xAI,52.9,3.1
+14,Claude Opus 4.6,Anthropic,45.2,3.1
