@@ -220,6 +220,8 @@ FrontierCode 允许 Agent 像工程师一样上网查文档、搜报错，但禁
 
 AA 的页面显示其榜单覆盖 111 个模型中的 28 个有 FrontierCode 2.0 结果。它把不同 effort 当作独立条目，而不是「每模型取最佳 effort」；这与官方口径不同，也解释了为什么 Opus 5.5 会同时出现 max 与 xhigh 两行。AA 的价值在于提供了一条独立于 Cognition harness 的复现路径，但它同样不公开题目，仍不是可完全离线复核的评测。
 
+AA 同时把 FrontierCode 2.0 作为 Artificial Analysis Intelligence Index v5.0 的编程类组件（权重 15%）；复合指数的四类权重与版本口径见 [aa-intelligence-index-v5.md](aa-intelligence-index-v5.md)。
+
 ### 4.4 版本演进
 
 表 6 · FrontierCode 版本沿革

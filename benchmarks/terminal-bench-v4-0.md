@@ -261,6 +261,7 @@ Opus 5 从 low 到 xhigh 提升 19.09 分，但 max 反而回落 2.12 分；GPT-
 - **Gemini 4 Carbon**：AA 65.2% 排第二；官方榜没有这一行；Vals 63.13% 排第四。不同 harness 对 Gemini 的排序影响很大。
 - **Vals 自身的漂移**：BenchLM 的 2026-10-28 镜像记 Opus 5.5 65.15%，LLMLearner 在 2026-11-05 记录的同属 Vals / mini-SWE-agent 口径的 Opus 5.5 是 68.7%，两个快照相差 3.55 分。第三方榜会随重跑更新，引用时必须带日期。
 - **LLMLearner 的 81 个模型**是把多来源的最好成绩聚合在一起，不是一份单一 harness 的榜单；其「榜首」与官方榜不可等同。
+- **在 AA 复合指数中的位置**：Terminal-Bench 4.0 是 Artificial Analysis Intelligence Index v5.0 的编程类组件（权重 10%）；该复合指数在 AA 自己的 mini-swe-agent 口径下使用 3 次重复，不能与官方 5 trials 的 64.85% 混用。复合指数口径见 [aa-intelligence-index-v5.md](aa-intelligence-index-v5.md)。
 
 ---
 
