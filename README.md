@@ -34,12 +34,13 @@
 | CL-bench | 2026-02-03 | 上下文学习 (`context`) | 500 上下文 / 1,899 任务 / 31,607 rubrics | 前沿模型 Overall 最高 27.9%，远未饱和 | [cl-bench.md](benchmarks/cl-bench.md) |
 | IFBench | 2025-07 | 精确指令遵循 (`instruction`) | 300 prompts / 58 个 OOD 约束 / 344 个约束实例 | 未饱和，统计功效受限（有效样本 58 个约束） | [ifbench.md](benchmarks/ifbench.md) |
 | DeepSWE | 2026-05-26 | 代码修复 (`code`) | 113 任务 / 91 仓库 / 5 种语言（v1.1） | v1.1 现行榜单（2026-09-22 更新），头部 73–74% 且置信区间重叠；Epoch AI 于 2026-09-07 评为 Flawed | [deepswe.md](benchmarks/deepswe.md) |
+| FrontierCode 2.0 | 2026-10-27 | 代码修复 (`code`) | 132 个私有任务（单一 Main 子集） | 现行榜单（2026-11-04 更新，28 个 model-agent 行）；Claude Opus 5.5 最高 45.5%，未饱和 | [frontiercode-v2.md](benchmarks/frontiercode-v2.md) |
 | WorkBuddy Bench | 2026-07-23 | Agent 端到端 (`agent`) | 260 题（Code 80 / Web 70 / Office 50 / Security 60） | 四个子集评分口径独立，子集间分数不可比 | [workbuddy-bench.md](benchmarks/workbuddy-bench.md) |
 | Terminal-Bench 4.0 | 2026-08-28 | Agent 端到端 (`agent`) | 66 个终端任务 / 7 类；每题 5 次 trial（330 trials） | 连续基准（语义化版本）；官方榜首 Opus 5.5 64.85%，Epoch 评审为 Flawed | [terminal-bench-v4-0.md](benchmarks/terminal-bench-v4-0.md) |
 | LiveBench v1 | 2024-06-12 | 抗污染客观题 (`qa`) | 23 任务 / 7 类（末次 release 2026-06-25；题库未完整公开） | 已冻结，官网已切换至 2.0；分数须绑定 release 日期 | [livebench-v1.md](benchmarks/livebench-v1.md) |
 | LiveBench 2.0 | 2026-10-14 | Agent 端到端 (`agent`) | 471 任务 / 7 suite（release 20261025） | 加权 Overall（2026-10-25），官网当前版 | [livebench-v2.md](benchmarks/livebench-v2.md) |
 
-一手数据快照见 [sources/workbuddy-bench/README.md](sources/workbuddy-bench/README.md)、[sources/livebench-v1/README.md](sources/livebench-v1/README.md)、[sources/livebench-v2/README.md](sources/livebench-v2/README.md)、[sources/deepswe/README.md](sources/deepswe/README.md) 与 [sources/terminal-bench-v4-0/README.md](sources/terminal-bench-v4-0/README.md)。SQuAD 两版无快照文件入库，来源版本与未入库边界见 [sources/squad-v1-1/README.md](sources/squad-v1-1/README.md) 与 [sources/squad-v2-0/README.md](sources/squad-v2-0/README.md)。
+一手数据快照见 [sources/workbuddy-bench/README.md](sources/workbuddy-bench/README.md)、[sources/livebench-v1/README.md](sources/livebench-v1/README.md)、[sources/livebench-v2/README.md](sources/livebench-v2/README.md)、[sources/deepswe/README.md](sources/deepswe/README.md) 与 [sources/terminal-bench-v4-0/README.md](sources/terminal-bench-v4-0/README.md)、[sources/frontiercode-v2/README.md](sources/frontiercode-v2/README.md)。SQuAD 两版无快照文件入库，来源版本与未入库边界见 [sources/squad-v1-1/README.md](sources/squad-v1-1/README.md) 与 [sources/squad-v2-0/README.md](sources/squad-v2-0/README.md)。
 
 ## 阅读约定
 
