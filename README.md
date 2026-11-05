@@ -30,6 +30,7 @@
 | SQuAD 1.1 | 2016-06 | 阅读理解 / QA (`qa`) | 107,785 个问答对（536 篇文章 / 23,215 段，论文口径） | 抽取式 QA 已饱和，官网榜首 F1 95.719（2021-07） | [squad-v1-1.md](benchmarks/squad-v1-1.md) |
 | SQuAD 2.0 | 2018-06 | 阅读理解 / QA (`qa`) | 约 150K 题，其中 53,775 条不可回答 | 已饱和（榜单末次新条目约 2022-05），仍是 RAG 拒答基线 | [squad-v2-0.md](benchmarks/squad-v2-0.md) |
 | HotpotQA | 2018-09 | 阅读理解 / QA (`qa`) | 112,779 题，dev / test 各 7,405 | Distractor 区分度下降，仍适合作 RAG 证据归因 sanity check | [hotpotqa.md](benchmarks/hotpotqa.md) |
+| MMLU | 2020-09 | 综合知识 / 多项选择 (`qa`) | 57 学科 / 15,908 题（论文口径；test 14,079） | 已饱和：独立 harness 头名 95.2%，Kaggle 标为 Deprecated，官方榜停更 | [mmlu.md](benchmarks/mmlu.md) |
 | SWE-bench | 2023-10 | 代码修复 (`code`) | Full 2,294 / Verified 500 | Verified 已饱和，主信号转向 Pro / Live | [swe-bench.md](benchmarks/swe-bench.md) |
 | CL-bench | 2026-02-03 | 上下文学习 (`context`) | 500 上下文 / 1,899 任务 / 31,607 rubrics | 前沿模型 Overall 最高 27.9%，远未饱和 | [cl-bench.md](benchmarks/cl-bench.md) |
 | IFBench | 2025-07 | 精确指令遵循 (`instruction`) | 300 prompts / 58 个 OOD 约束 / 344 个约束实例 | 未饱和，统计功效受限（有效样本 58 个约束） | [ifbench.md](benchmarks/ifbench.md) |

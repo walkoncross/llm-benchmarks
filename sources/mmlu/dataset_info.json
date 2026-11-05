@@ -1,0 +1,26 @@
+{
+  "dataset": "cais/mmlu",
+  "repo_sha": "c30699e8356da336a370243923dbaf21066bb9fe",
+  "repo_last_modified": "2024-03-08",
+  "license": "mit",
+  "language": ["en"],
+  "config": "all",
+  "features": ["question", "subject", "choices", "answer"],
+  "answer_labels": { "0": "A", "1": "B", "2": "C", "3": "D" },
+  "num_subjects": 57,
+  "splits": {
+    "test": 14042,
+    "validation": 1531,
+    "dev": 285,
+    "auxiliary_train": 99842
+  },
+  "size_bytes": {
+    "test": 6967453,
+    "validation": 763484,
+    "dev": 125353,
+    "auxiliary_train": 161000625
+  },
+  "note": "auxiliary_train 为辅助训练池（来自 AGIEval / RACE / 高中考试等外部数据），不是 MMLU 考题，不得计入测试规模。",
+  "fetched": "2026-11-05",
+  "source_url": "https://huggingface.co/datasets/cais/mmlu/blob/main/README.md"
+}
