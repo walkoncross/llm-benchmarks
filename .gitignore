@@ -1,0 +1,47 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Agent 本地工作记录（项目数据，非临时缓存；不入库、不删除）
+.workbuddy/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-store/
+
+# 环境变量与密钥
+.env
+.env.*
+!.env.example
+
+# 大型数据集、上游源码与临时产物（入库边界见 sources/*/README.md）
+*.tar.gz
+*.zip
+*.parquet
+*.jsonl
+datasets/
+dist/
+build/
+*.log

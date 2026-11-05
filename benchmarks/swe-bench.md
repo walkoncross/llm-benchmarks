@@ -1,13 +1,26 @@
-# SWE-bench
+---
+name: SWE-bench
+slug: swe-bench
+category: code
+scale: Full 2,294 / Verified 500
+status: Verified 已饱和，主信号转向 Pro / Live
+updated: 2026-11-05
+sources:
+  - https://www.swebench.com/
+  - https://github.com/SWE-bench/SWE-bench
+---
 
-> 用真实 GitHub issue 检验语言模型能否端到端修复一个代码仓库。
-> 发布：Princeton NLP，2023-10（ICLR 2024）
+# SWE-bench：仓库级 issue 修复
 
-## 一句话定位
+---
+
+## 1. 一句话定义
 
 它不考算法题，而是把真实 issue 丢给模型，让它自己读仓库、改代码、跑测试。判分不靠人看、不靠文本相似度，**只靠仓库原本的单元测试是否通过**。
 
-## 评测机制
+---
+
+## 2. 评测机制
 
 每条实例 = 一段真实 GitHub issue 文本 + 该仓库在某个历史 commit 上的完整快照。原始集 2,294 条，取自 django、scikit-learn、sympy、matplotlib、pytest 等 12 个流行 Python 仓库。
 
@@ -43,7 +56,9 @@ flowchart TB
 
 核心指标 **% Resolved**：两类测试（`FAIL_TO_PASS` + `PASS_TO_PASS`）全部通过的实例占比。容器化执行是它可信度的来源，也是它成本高的原因——每条实例都要拉镜像、建环境。
 
-## 家族成员
+---
+
+## 3. 家族成员
 
 | 变体 | 规模 | 定位 | 现状 |
 | --- | --- | --- | --- |
@@ -56,7 +71,9 @@ flowchart TB
 | SWE-bench-Live | 持续更新 | 微软维护，每月新增 50 道新 issue，抗污染 | 最强污染审计 |
 | SWE-Bench Pro Verified | 731 | 2026-09，在 Pro 之上加反作弊机制 | 新 |
 
-## 成绩演进
+---
+
+## 4. 成绩演进
 
 | 时间 | 系统 | 解决率 | 口径 |
 | --- | --- | --- | --- |
@@ -66,9 +83,11 @@ flowchart TB
 | 2026-02 | Claude 4.5 Opus | 76.8% | Verified，官方 mini-SWE-agent harness |
 | 2026-07 | Claude Opus 5 | 96.0% | Verified，厂商自报 |
 
-⚠️ **不要跨口径比较。** 官方榜单（swebench.com）强制所有模型跑同一套极简 harness（mini-SWE-agent，纯 bash、约 100 行 Python），因此官方数字显著低于厂商自报。换一套文件检索策略、多给几次重试，同一模型可相差 10–20 个百分点。脱离 harness 谈分数没有意义。
+> ⚠️ **不要跨口径比较**：官方榜单（swebench.com）强制所有模型跑同一套极简 harness（mini-SWE-agent，纯 bash、约 100 行 Python），因此官方数字显著低于厂商自报。换一套文件检索策略、多给几次重试，同一模型可相差 10–20 个百分点。脱离 harness 谈分数没有意义。
 
-## 已知问题
+---
+
+## 5. 已知缺陷
 
 - **数据污染**：OpenAI 审计发现所有前沿模型都能复现部分 gold patch 原文。第三方分析更具体——仅凭 issue 文本、不看代码，模型在 Verified 上命中正确文件的概率为 76%，而在同类但不在榜内的仓库上不到 53%；gold 函数的 5-gram 重叠 34.9% vs 18.2%，是典型的记忆特征。
 - **测试本身有错**：OpenAI 让工程师逐题复核 138 道 o3 表现不稳的题，至少 59.4% 存在"会拒绝正确解"的错误测试（占全集的 27.6%）。
@@ -76,7 +95,9 @@ flowchart TB
 - **指标单一**：只测"能不能跑通"，不看代码质量、性能、安全；原始集仅覆盖 Python。
 - **Pro 也非净土**：SWE-Bench Pro Verified 论文发现 gold solution 泄漏导致 reward hacking，部分模型的真实能力低于已公布数字。
 
-## 复现
+---
+
+## 6. 复现
 
 ```bash
 pip install swebench
@@ -95,14 +116,18 @@ python -m swebench.harness.run_evaluation \
 - 开源脚手架：SWE-agent / mini-SWE-agent
 - 邻近基准：SWE-bench-Live、SWE-Bench Pro、SWE-bench Multimodal
 
-## 结论
+---
+
+## 7. 结论
 
 SWE-bench 是过去三年 agentic coding 最重要的公共标尺，但已从"能力度量"退化为"sanity check"。评估模型真实工程水平，应看 Pro / Live / Multimodal，且必须把评测脚手架一起看。
 
-## 参考
+---
 
-- 官网与榜单：https://www.swebench.com/
-- 原始论文：*SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* (ICLR 2024)
-- Verified 说明：https://openai.com/index/introducing-swe-bench-verified/
-- SWE-bench-Live：https://swe-bench-live.github.io/
-- 仓库：https://github.com/SWE-bench/SWE-bench
+## 8. 参考来源
+
+1. 官网与榜单：https://www.swebench.com/
+2. 原始论文：*SWE-bench: Can Language Models Resolve Real-World GitHub Issues?*（Princeton NLP，2023-10 发布；ICLR 2024）
+3. Verified 说明：https://openai.com/index/introducing-swe-bench-verified/
+4. SWE-bench-Live：https://swe-bench-live.github.io/
+5. 仓库：https://github.com/SWE-bench/SWE-bench

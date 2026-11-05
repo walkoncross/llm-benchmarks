@@ -1,7 +1,16 @@
-# HotpotQA 数据集介绍
+---
+name: HotpotQA
+slug: hotpotqa
+category: qa
+scale: 112,779 题，dev / test 各 7,405
+status: Distractor 区分度下降，仍适合作 RAG 证据归因 sanity check
+updated: 2026-11-05
+sources:
+  - https://hotpotqa.github.io/
+  - https://arxiv.org/abs/1809.09600
+---
 
-> 调研日期：2026-11-05
-> 主要来源：[HotpotQA 官网与榜单](https://hotpotqa.github.io/)、Yang et al., *HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering*, EMNLP 2018（[arXiv:1809.09600](https://arxiv.org/abs/1809.09600)）、本地官方 baseline 仓库 `README.md` / `model.py` / `hotpot_evaluate_v1.py`
+# HotpotQA：多跳问答与证据链归因
 
 ---
 
@@ -14,7 +23,7 @@
 1. **必须跨文档**：一个问题无法由任意单篇文档回答，需要先定位中间实体或同时比对两篇文档的信息。
 2. **证据链可评分**：每条数据标注了**句子级支持事实（supporting facts）**，模型不光要答对，还得指出哪些句子支撑了答案。
 
-第二点是它标题里 "explainable" 的由来，也是它在方法论上最重要的贡献——**把「答案正确」和「推理依据正确」绑成一次联合评分**，堵住了纯靠词汇匹配猜答案的路。作为对照，仓库内 [SQuAD 文档](2026-11-05-SQuAD数据集介绍.md) 第 6 节把「每题只对应单个段落」列为 SQuAD 的首要局限，HotpotQA 正是为补上这一环而设计的。
+第二点是它标题里 "explainable" 的由来，也是它在方法论上最重要的贡献——**把「答案正确」和「推理依据正确」绑成一次联合评分**，堵住了纯靠词汇匹配猜答案的路。作为对照，仓库内 [SQuAD 文档](squad.md) 第 6 节把「每题只对应单个段落」列为 SQuAD 的首要局限，HotpotQA 正是为补上这一环而设计的。
 
 ---
 
@@ -180,7 +189,7 @@ python hotpot_evaluate_v1.py dev_distractor_pred.json hotpot_dev_distractor_v1.j
 | 2018 | 人类 | dev（论文标注） | — | ≈91.4 | ≈90 | — | **论文 / 二手汇总，官网榜单未列人类基线** |
 | 2025–2026 | RAG / LLM 分解式方案 | 第三方论文自报 | 66–70 | 79–81 | — | — | 非官方榜单，协议各异 |
 
-> ⚠️ **不要跨口径比较**（遵循本仓库 README 阅读约定）：distractor 与 fullwiki 是不同测试集，彼此不可比；官网数字来自隐藏测试集 + Codalab 提交，而 2025 年后流传的 LLM 分数多来自 dev 集零样本/少样本测试、第三方 harness 或厂商自报，不进官方榜，不能直接与榜单排序。
+> ⚠️ **不要跨口径比较**：distractor 与 fullwiki 是不同测试集，彼此不可比；官网数字来自隐藏测试集 + Codalab 提交，而 2025 年后流传的 LLM 分数多来自 dev 集零样本/少样本测试、第三方 harness 或厂商自报，不进官方榜，不能直接与榜单排序。
 
 方法演进大致三条线：**实体图推理**（DFGN、HGN 等构建跨文档实体图并做多跳 GAT）、**多跳检索**（MDR 迭代式稠密检索、Beam Retrieval 束搜索）、**端到端 / LLM 时代**（联合排序句子与段落、问题分解 + CoT 证据链、RAG 动态检索）。值得注意的是，官方 distractor 榜首仍停留在 2023-08，fullwiki 榜首停留在 2021-05——榜单已不再是前沿难度的主要战场。
 

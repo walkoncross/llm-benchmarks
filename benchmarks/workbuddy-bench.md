@@ -1,21 +1,31 @@
+---
+name: WorkBuddy Bench
+slug: workbuddy-bench
+category: agent
+scale: 260 题（Code 80 / Web 70 / Office 50 / Security 60）
+status: 四个子集评分口径独立，子集间分数不可比
+updated: 2026-11-05
+verified: 2026-10-20
+snapshot: Leaderboard v1.2 / data.js v29（generated / last_verified 2026-10-15）
+sources:
+  - https://workbuddybench.com/
+  - https://workbuddybench.com/data.js
+  - https://github.com/Tencent/workbuddy-bench
+---
+
 # WorkBuddy Bench：子集评分机制核验 + Token 效率对照
-
-## 定位
-
-腾讯 2026-07-23 开源的 **Agent 评测套件**（非办公产品），测的是"编程/办公 Agent 能否端到端完成真实工作"。四个子集 Code 80 / Web 70 / Office 50 / Security 60，共 **260 题**；题目从真实 commit、PR、业务场景逆向改写成口语化、带角色扮演、信息不完整的请求，以此抗污染。用 CodeBuddy Code 2.109.3 与 Claude Code 2.1.187 **两套 harness 交叉验证**，把"模型能力"与"框架能力"拆开；每子集 3 次运行取均值、think 模式、上下文统一 200k、关闭 WebSearch 与 AskUserQuestion。**四个子集评分口径各自独立，官方不提供总分，子集间分数不可直接比较。** 已知缺陷见第 6 节与文末「未按同样深度核验的」。
-
-> 数据快照：Leaderboard **v1.2**（generated / last_verified **2026-10-15**）
-> 核验日期：2026-10-20 ｜ 归档日期：2026-11-05
-> 一手来源：
-> - 官网榜单 https://workbuddybench.com/ （“Key Takeaways” + “Token efficiency” 两节）
-> - 榜单原始数据 https://workbuddybench.com/data.js （`v29`，含每模型 token/轮次，本文件表 5–8 直接取自该文件的 `subsets` 段）；**仓库内副本**见 `sources/workbuddy-bench/data.js` 与 `roster.js`，用于复核表 5–8
-> - 评测框架仓库 https://github.com/Tencent/workbuddy-bench （核验时浅克隆，HEAD = `625b223`，2026-08-20；按第 7 节命令可复现，未随本仓库入库）
-> - 技术报告 https://workbuddybench.com/report/main.pdf （**未取到**：>9MB 且该 host 速率约 17KB/s，两次下载均被截断）
-> - Office 任务数据 `wb-bench-office-v1.0.tar.gz`（2.89MB，经 hf-mirror 拉取后逐题解析）——第 2.1 节的全部数字由此得出，非二手引用；原始归档与解包目录按第 7 节自行拉取，未随本仓库入库
 
 ---
 
-## 1. 四个子集：题量、产物形态、判分入口
+## 1. 一句话定义
+
+腾讯 2026-07-23 开源的 **Agent 评测套件**（非办公产品），测的是"编程/办公 Agent 能否端到端完成真实工作"。四个子集 Code 80 / Web 70 / Office 50 / Security 60，共 **260 题**；题目从真实 commit、PR、业务场景逆向改写成口语化、带角色扮演、信息不完整的请求，以此抗污染。用 CodeBuddy Code 2.109.3 与 Claude Code 2.1.187 **两套 harness 交叉验证**，把"模型能力"与"框架能力"拆开；每子集 3 次运行取均值、think 模式、上下文统一 200k、关闭 WebSearch 与 AskUserQuestion。**四个子集评分口径各自独立，官方不提供总分，子集间分数不可直接比较。** 已知缺陷见第 7 节与附录「未按同样深度核验的」。
+
+> **核验说明**：数据快照 Leaderboard **v1.2**（generated / last_verified **2026-10-15**），核验日期 2026-10-20，归档 2026-11-05。一手来源与入库边界见第 9 节参考来源及「附：来源文件与入库边界」；表 5–8 直接取自 `sources/workbuddy-bench/data.js` 的 `subsets` 段，可离线复核。
+
+---
+
+## 2. 四个子集：题量、产物形态、判分入口
 
 题量与代办事项来自 README.zh.md 的官方表格；判分入口来自 `configs/README.zh.md:155-162` 的「最新数据集入口」表，并在本地仓库逐文件核对。
 
@@ -28,15 +38,17 @@
 
 Security “不使用 workbuddy LLM judge 或 diff_capture”这一约束在 `configs/bench/wb-bench-sec-v1.0.yaml:7-11` 与 `:32-34` 两处交叉确认；`:24-30` 进一步说明它**刻意不接** `CompositeVerifier`，因为 task-native 的 `dataset.toml` 不提供 `[verifier]` composite contract，走 composite 会抛 `VerifierContractError`。
 
-## 2. Office 子集：难在哪、怎么判
+---
+
+## 3. Office 子集：难在哪、怎么判
 
 **难在结构不在行数。** README.zh.md 对 Office 的定义是：在混合格式文件（xlsx / csv / pdf / docx）上操作，产出完全正确的目标产物；难度来自**结构、关系、状态与证据链**，而不是行数。这条决定了它的判分必须两条腿走路：
 
-1. **确定性规则检查**（主体）——`tests/verifier.toml` 指定在 `/workspace` 下跑 `pytest /tests/grading`，由 `eval_core.evaluate()` 产出 `checks: [{name, passed, detail, group}]`，最终 `pass_rate = passed_count / total_count`（见 2.3）。
+1. **确定性规则检查**（主体）——`tests/verifier.toml` 指定在 `/workspace` 下跑 `pytest /tests/grading`，由 `eval_core.evaluate()` 产出 `checks: [{name, passed, detail, group}]`，最终 `pass_rate = passed_count / total_count`（见 3.2）。
 2. **证据驱动的 LLM judge**（补充）——评定规则难以穷举的"自查/结论"类产出，且只读 **verifier 产出的 `artifact_manifest.json` + `artifact_text/*` 冻结证据**（`shared/verifier/README.md:15`），不是让 judge 重跑 Agent。
-3. **融合权重**：`weighted_sum(rule × rule_weight + llm × llm_weight)`，**已逐题核实**（见 2.1）。
+3. **融合权重**：`weighted_sum(rule × rule_weight + llm × llm_weight)`，**已逐题核实**（见 3.1）。
 
-### 2.1 一手核验：50 道题的 `judge.yaml` 全量统计
+### 3.1 一手核验：50 道题的 `judge.yaml` 全量统计
 
 `rule_weight` **精确地落在 0.70–0.95 区间**（此前二手资料只说区间，这里给出分布）：
 
@@ -59,7 +71,7 @@ Security “不使用 workbuddy LLM judge 或 diff_capture”这一约束在 `co
 
 **一个需要修正的认知**：所谓"禁联网"是在 **harness 工具层**关闭 WebSearch / AskUserQuestion 实现的；Office 样例任务的 `task.toml` 里 `[environment] network_mode = "public"`，任务容器本身并非断网隔离。真正防止作弊的是**任务禁令 + 静态 fixtures + gold 比对**，以及 instruction 里那句"不联网、不查询真实行情"。
 
-### 2.3 规则侧真实长相：check 组 + 安全护栏
+### 3.2 规则侧真实长相：check 组 + 安全护栏
 
 以 `analyst-forecast-extract-L3-018/tests/grading/eval_core.py`（386 行）为例，规则不是"比对一个唯一答案"，而是**分层 check**：
 
@@ -72,7 +84,7 @@ Security “不使用 workbuddy LLM judge 或 diff_capture”这一约束在 `co
 
 `safety_partition` 这一组值得单独拎出来说：它把"Agent 越界做了外部动作"（发邮件、发 IM、给交易建议）当成**确定性失败项**写进 `pass_rate` 分母，而不是靠 LLM 裁判打分。这是 Office 子集在"确定性"上比 Web 更彻底的地方。
 
-### 2.4 为什么 Office 是四个子集里最稳的
+### 3.3 为什么 Office 是四个子集里最稳的
 
 运行参数（`configs/bench/wb-bench-office-v1.0.yaml`）：
 
@@ -87,7 +99,9 @@ Security “不使用 workbuddy LLM judge 或 diff_capture”这一约束在 `co
 
 实测证据（与“换 harness 影响有限”一致）：公开评测中 Office 七个模型得分落在 **77.47–82.37**，换一套 harness 后多数模型变化不到 2 分，**中位绝对变化 0.86 分**——Office 是四个子集里最“稳”的，因为它几乎不吃 harness 的工具链差异。
 
-## 3. Security 子集：四个子集里最硬的一个
+---
+
+## 4. Security 子集：四个子集里最硬的一个
 
 **配置就写着“不得接入 LLM judge”**（`configs/bench/wb-bench-sec-v1.0.yaml:32`：`# No LLM judge for sec — scoring is fully programmatic.`）。判分链路：
 
@@ -97,11 +111,13 @@ tests/test.sh  →  tests/scoring.py（或 test_outputs.py）  →  reward.txt /
 
 脚本做的事是**客观比对**，不是主观打分：PoC 是否真的触发、YARA 规则是否命中、产出是否与 ground truth 一致。`n_attempts: 3`（`:13`），每任务跑 3 次取均值；`verifier_user: root`（`:19`），因为要把目标二进制/服务编进镜像、verifier 常需要 root 暂存路径。
 
-代价是**它最贵**：Token 效率小节指出 Security 是消耗最大的子集，中游成绩在 CodeBuddy Code 下平均每次运行可达约 **90 轮交互**、约 **1,100 万**输入 token（含缓存）。本文件第 5 节的表 8 能直接看到这个量级。
+代价是**它最贵**：Token 效率小节指出 Security 是消耗最大的子集，中游成绩在 CodeBuddy Code 下平均每次运行可达约 **90 轮交互**、约 **1,100 万**输入 token（含缓存）。本文件第 6 节的表 8 能直接看到这个量级。
 
 另一个只有 Security 才报的字段是 **`refusals`（拒答计数）**：GPT-5.5 在 cbc 下 2 次、Gemini-3.5-Flash 两次均为 4、Claude Opus 4.8 在 cc 下 **13 次**。这是把“模型不肯干”从分数里显式剥离出来——不然拒答会伪装成分低。
 
-## 4. 代码级核验：共享的 `PassRateScoringPolicy`
+---
+
+## 5. 代码级核验：共享的 `PassRateScoringPolicy`
 
 所有走 `CompositeVerifier` 的子集共用 `judge/core/scoring.py` 里的打分策略。要点全部锚定行号：
 
@@ -116,7 +132,7 @@ tests/test.sh  →  tests/scoring.py（或 test_outputs.py）  →  reward.txt /
 | `scorer/metrics.py:247-263` | 未产出 trial 的期望任务 → 合成 0 分 build_error | 崩溃/未跑的任务计入分母，而不是静默消失 |
 | `scorer/metrics.py:43-53` | `DEFINITIONS` | reward = 各 trial verifier 分均值；pass_rate = trial 满分率；先任务内平均再跨任务平均 |
 
-### 4.1 8 月的那次“分数虚高”修复
+### 5.1 8 月的那次“分数虚高”修复
 
 `judge/runners/rule/script_verifier_resilience.py` 读起来像一份事故复盘。它针对的是「单个 `try` 包住所有检查、`finally: write_reward()` 结算」的脚本 verifier 写法——**任何一条 setup 抛异常，后面所有检查都不执行，分母随之变小，分数反而虚高**。防御手段：
 
@@ -126,16 +142,18 @@ tests/test.sh  →  tests/scoring.py（或 test_outputs.py）  →  reward.txt /
 
 这套最后防线与仓库 HEAD 的那条 commit（`fix/script-verifier-inflated-score`，2026-08-20）是同一件事。
 
-### 4.2 三条容易踩的坑
+### 5.2 三条容易踩的坑
 
 - **`Rebase` 只认纯通过率**：带 `llm_judge_component_score` 标记、或 `overall ≠ test_pass_rate` 的 composite 分不参与分母回填，否则会污染 LLM 与规则的混合比例（`scorer/metrics.py:91-117`）。
 - **未跑的任务不是“没数据”而是 0 分**：传 `--manifest` 让 `selected_tasks` 定义期望集合，缺失任务合成 build_error 计入分母（`scorer/metrics.py:247-263`、`:380-388`）。
 - **评分不要写在 bench YAML 里**：`configs/README.zh.md:76-78` 明确 bench 层配置的是运行不变量，评分一律由数据集侧 `dataset.toml` 的 `[verifier]` contract + 本地 `shared/verifier/plugin.py` 承担；旧的 `verifier.kwargs.profile` / `[judging]` 已废弃（`configs/README.zh.md:170-171`）。
 
-## 5. Token 效率对照表（4 子集 × 2 harness）
+---
+
+## 6. Token 效率对照表（4 子集 × 2 harness）
 
 > 口径：`data.js` `subsets` 段；3 次运行平均、think 模式；`avgTurns` 计去重后的 assistant 消息（含 subagent）；`avgOutputK` 为每次运行输出 token（千）。
-> **兼容性警示**：Token 效率表覆盖的模型名单（Opus 4.8 / GPT-5.5 / GLM-5.2 / HY-3 / Kimi K2.6-2.7 / Gemini-3.5-Flash）与主页 v1.2 总榜名单（Opus 5.5 / V4.1-Flash-1017 / GLM-5.3 / Kimi K3 / Hy4 preview …）**不是同一批**。效率结论请只在下表的 roster 内解读，不要跨表和外推到新模型。
+> ⚠️ **不要跨口径比较**：Token 效率表覆盖的模型名单（Opus 4.8 / GPT-5.5 / GLM-5.2 / HY-3 / Kimi K2.6-2.7 / Gemini-3.5-Flash）与主页 v1.2 总榜名单（Opus 5.5 / V4.1-Flash-1017 / GLM-5.3 / Kimi K3 / Hy4 preview …）**不是同一批**。效率结论请只在下表的 roster 内解读，不要跨表和外推到新模型。
 
 ### 表 5 · Code（metric: Harbor run-level reward）
 
@@ -206,7 +224,7 @@ GLM-5.2 与 MiniMax-M3 的 Security 数据连同分数一起被官方暂扣（`d
 
 ---
 
-## 6. 结论怎么用
+## 7. 结论怎么用
 
 1. **别跨子集比**：四个子集度量衡不同，官方明确不提供总分；同理，同一模型的 Code/Web/Office/Security 分不可加权平均。
 2. **必须带 harness 读**：GLM-5.2 在 Web 上 67.43（cbc）vs 60.71（cc），Code 上 71.54（cbc）vs 77.06（cc）——两个赛道的方向还相反。官方 Key Takeaways 引用的 DeepSeek-V4-Flash Security 跨 harness 差距（65.65 vs 53.90）比本表 v29 数据的 cbc 值更大，说明该行数据仍在滚动更新，引用前重拉 `data.js`。
@@ -215,7 +233,9 @@ GLM-5.2 与 MiniMax-M3 的 Security 数据连同分数一起被官方暂扣（`d
 5. **数据版本要盯住**：效率 roster 落后于总榜 roster；Security 有 2 个模型的数据处于暂扣状态。引用时务必带上 `data.js` 版本号（当前 `v29`）与时间戳。
 6. **别把"禁联网"理解成断网容器**：它在 harness 工具层实现（关 WebSearch / AskUserQuestion），任务容器的 `network_mode` 仍是 `public`。真正兜底的是任务禁令 + 静态 fixtures + gold 比对 + `safety_partition` 那一组确定性 check。
 
-## 7. 本地复现
+---
+
+## 8. 本地复现
 
 仓库自带 `wbbench-run-setup` skill（`.agents/skills/`，`.claude/skills/` 软链），可由 Agent 端到端带跑。手动路径：
 
@@ -235,6 +255,8 @@ python -m workbuddy_bench.scorer.metrics results/<job>/<run> --json
 
 固定运行不变量（`configs/bench/_default.yaml`）：`agent_user: dev` 非 root（`:18-23`）、`context_window: 200000` + `context_compact_pct: 92`（`:32-33`）、`llm_judge.enabled: false` 兜底（`:37-40`）、`n_concurrent_trials: 8`（`:9`）。
 
+---
+
 ## 附：来源文件与入库边界
 
 **随本仓库入库**（可离线复核表 5–8）：
@@ -244,7 +266,7 @@ python -m workbuddy_bench.scorer.metrics results/<job>/<run> --json
 | `sources/workbuddy-bench/data.js` | 官网榜单原始数据，`v29`；`subsets` 段含每模型 score / avgTurns / avgInputK / avgOutputK / cachedInputK / refusals |
 | `sources/workbuddy-bench/roster.js` | 官网模型名册，`v15` |
 
-**未入库，按第 7 节自行拉取**（上游源码与任务数据，体积大且可复现）：
+**未入库，按第 8 节自行拉取**（上游源码与任务数据，体积大且可复现）：
 
 | 路径（核验时的工作区） | 用途 |
 |---|---|
@@ -254,7 +276,18 @@ python -m workbuddy_bench.scorer.metrics results/<job>/<run> --json
 | `wbb-repo/src/workbuddy_bench/judge/runners/rule/script_verifier_resilience.py` | 脚本 verifier 抗拉闸 + 分母锁死 |
 | `wbb-repo/src/workbuddy_bench/judge/profiles/dispatcher.py` | `CompositeVerifier` 执行链 |
 | `wbb-repo/configs/README.zh.md` | 四数据集判分入口官方表（`:155-162`） |
-| `office-dataset/wb-bench-office-v1.0/` | Office 50 题解包目录（`dataset.toml` / `shared/verifier/` / `tasks/<id>/{instruction.md,task.toml,tests/{judge.yaml,verifier.toml,grading,gold}}`），第 2.1、2.3 节的统计来源 |
+| `office-dataset/wb-bench-office-v1.0/` | Office 50 题解包目录（`dataset.toml` / `shared/verifier/` / `tasks/<id>/{instruction.md,task.toml,tests/{judge.yaml,verifier.toml,grading,gold}}`），第 3.1、3.2 节的统计来源 |
 | `wb-bench-office-v1.0.tar.gz` | 上述数据包的原始归档（2.89MB） |
 
 未按同样深度核验的：**Web（22MB）与 Security（479MB）的数据集未拉取**——Security 归档过大，本节关于 Security 的结论来自仓库 `configs/bench/wb-bench-sec-v1.0.yaml` 与 `configs/README.zh.md:162` 的官方描述，若要逐题核实需本地拉取 479MB 的任务包（含各自的目标二进制与服务环境）。
+
+---
+
+## 9. 参考来源
+
+1. 官网榜单（"Key Takeaways" + "Token efficiency" 两节）：https://workbuddybench.com/
+2. 榜单原始数据 `data.js`（`v29`，Leaderboard v1.2，generated / last_verified 2026-10-15；`subsets` 段含每模型 score / avgTurns / avgInputK / avgOutputK / cachedInputK / refusals）：https://workbuddybench.com/data.js 。仓库内副本见 `sources/workbuddy-bench/data.js` 与 `roster.js`，用于复核表 5–8。
+3. 评测框架仓库（核验时浅克隆，HEAD = `625b223`，2026-08-20；按第 8 节命令可复现，未随本仓库入库）：https://github.com/Tencent/workbuddy-bench
+4. 技术报告（**未取到**：>9MB 且该 host 速率约 17KB/s，两次下载均被截断）：https://workbuddybench.com/report/main.pdf
+5. Office 任务数据 `wb-bench-office-v1.0.tar.gz`（2.89MB，经 hf-mirror 拉取后逐题解析）——第 3.1 节的全部数字由此得出，非二手引用；原始归档与解包目录按第 8 节自行拉取，未随本仓库入库。
+6. 官网模型名册 `roster.js`（`v15`）：版本与入库边界见 `sources/workbuddy-bench/README.md`。

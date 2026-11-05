@@ -1,7 +1,17 @@
-# SQuAD 数据集介绍
+---
+name: SQuAD
+slug: squad
+category: qa
+scale: 1.1 107,785 题 / 2.0 约 150K 题
+status: 抽取式 QA 已饱和，仍是 RAG 拒答基线
+updated: 2026-11-05
+sources:
+  - https://rajpurkar.github.io/SQuAD-explorer/
+  - https://arxiv.org/abs/1606.05250
+  - https://arxiv.org/abs/1806.03822
+---
 
-> 调研日期：2026-11-05
-> 主要来源：[SQuAD Explorer 官网](https://rajpurkar.github.io/SQuAD-explorer/)、[SQuAD 1.0 论文 arXiv:1606.05250](https://arxiv.org/abs/1606.05250)、[SQuAD 2.0 论文 arXiv:1806.03822](https://arxiv.org/abs/1806.03822)
+# SQuAD：抽取式阅读理解基准
 
 ---
 
@@ -105,7 +115,7 @@ python evaluate-v2.0.py dev-v2.0.json predictions.json
 | 2020–2022 | Retro-Reader、SA-Net、FPNet、IE-Net 等「抽取器 + 验证器 + 集成」方案把 v2.0 推到 EM 90.939 / F1 93.214；榜单最后的新条目约在 2022-05 |
 | 2023 至今 | 抽取式 QA 基本饱和，官方榜鲜有新提交；LLM 时代转为 zero-/few-shot 评测与 RAG 场景下的拒答评估 |
 
-> **注意可比性**：官网榜单是「在 SQuAD 上微调 + 隐藏测试集」的成绩。网络上流传的 2024–2026 年 LLM「SQuAD 2.0 得分」多来自第三方零样本/少样本测试或厂商自测，与榜单口径不同，**不能直接横向比较**；引用时应明确评测协议。
+> ⚠️ **不要跨口径比较**：官网榜单是「在 SQuAD 上微调 + 隐藏测试集」的成绩。网络上流传的 2024–2026 年 LLM「SQuAD 2.0 得分」多来自第三方零样本/少样本测试或厂商自测，与榜单口径不同，**不能直接横向比较**；引用时应明确评测协议。
 
 ---
 
