@@ -32,6 +32,7 @@
 | HotpotQA | 2018-09 | 阅读理解 / QA (`qa`) | 112,779 题，dev / test 各 7,405 | Distractor 区分度下降，仍适合作 RAG 证据归因 sanity check | [hotpotqa.md](benchmarks/hotpotqa.md) |
 | MMLU | 2020-09 | 综合知识 / 多项选择 (`qa`) | 57 学科 / 15,908 题（论文口径；test 14,079） | 已饱和：独立 harness 头名 95.2%，Kaggle 标为 Deprecated，官方榜停更 | [mmlu.md](benchmarks/mmlu.md) |
 | SWE-bench | 2023-10 | 代码修复 (`code`) | Full 2,294 / Verified 500 | Verified 已饱和，主信号转向 Pro / Live | [swe-bench.md](benchmarks/swe-bench.md) |
+| GPQA | 2023-11-20 | 科学问答 / QA (`qa`) | 546 题 Extended / 448 题 Main / 198 题 Diamond（四选一，生物 / 物理 / 化学） | 题目自 2023-11 起未换题；Diamond 已饱和（2026-11 头部 94–96%），多口径混用 | [gpqa.md](benchmarks/gpqa.md) |
 | CL-bench | 2026-02-03 | 上下文学习 (`context`) | 500 上下文 / 1,899 任务 / 31,607 rubrics | 前沿模型 Overall 最高 27.9%，远未饱和 | [cl-bench.md](benchmarks/cl-bench.md) |
 | IFBench | 2025-07 | 精确指令遵循 (`instruction`) | 300 prompts / 58 个 OOD 约束 / 344 个约束实例 | 未饱和，统计功效受限（有效样本 58 个约束） | [ifbench.md](benchmarks/ifbench.md) |
 | DeepSWE | 2026-05-26 | 代码修复 (`code`) | 113 任务 / 91 仓库 / 5 种语言（v1.1） | v1.1 现行榜单（2026-09-22 更新），头部 73–74% 且置信区间重叠；Epoch AI 于 2026-09-07 评为 Flawed | [deepswe.md](benchmarks/deepswe.md) |
@@ -43,7 +44,7 @@
 | AA Intelligence Index v5.0 | 2026-10-27 | 综合能力聚合 (`agent`) | 9 项评测；知识工作、编程、科学、通用四类各 25%；60% 权重为私有测试集 | v5.0.1 现行（2026-11）；跨版本分数不可直接比 | [aa-intelligence-index-v5.md](benchmarks/aa-intelligence-index-v5.md) |
 | AIME | 1983（首届赛事） | 竞赛数学 / 短答案 (`qa`) | 30 题 / 年（AIME I + II 各 15 题）；单卷口径 15 题 | 已饱和：MathArena 2026-05-12 起停止新建最终答案类基准并标记 deprecated，前沿模型接近满分 | [aime.md](benchmarks/aime.md) |
 
-一手数据快照见 [sources/workbuddy-bench/README.md](sources/workbuddy-bench/README.md)、[sources/livebench-v1/README.md](sources/livebench-v1/README.md)、[sources/livebench-v2/README.md](sources/livebench-v2/README.md)、[sources/deepswe/README.md](sources/deepswe/README.md)、[sources/frontiercode-v2/README.md](sources/frontiercode-v2/README.md)、[sources/terminal-bench-v4-0/README.md](sources/terminal-bench-v4-0/README.md)、[sources/mmlu/README.md](sources/mmlu/README.md)、[sources/aa-intelligence-index-v5/README.md](sources/aa-intelligence-index-v5/README.md) 与 [sources/aime/README.md](sources/aime/README.md)。SQuAD 两版无快照文件入库，来源版本与未入库边界见 [sources/squad-v1-1/README.md](sources/squad-v1-1/README.md) 与 [sources/squad-v2-0/README.md](sources/squad-v2-0/README.md)。
+一手数据快照见 [sources/workbuddy-bench/README.md](sources/workbuddy-bench/README.md)、[sources/livebench-v1/README.md](sources/livebench-v1/README.md)、[sources/livebench-v2/README.md](sources/livebench-v2/README.md)、[sources/deepswe/README.md](sources/deepswe/README.md)、[sources/frontiercode-v2/README.md](sources/frontiercode-v2/README.md)、[sources/terminal-bench-v4-0/README.md](sources/terminal-bench-v4-0/README.md)、[sources/mmlu/README.md](sources/mmlu/README.md)、[sources/aa-intelligence-index-v5/README.md](sources/aa-intelligence-index-v5/README.md)、[sources/gpqa/README.md](sources/gpqa/README.md) 与 [sources/aime/README.md](sources/aime/README.md)。SQuAD 两版无快照文件入库，来源版本与未入库边界见 [sources/squad-v1-1/README.md](sources/squad-v1-1/README.md) 与 [sources/squad-v2-0/README.md](sources/squad-v2-0/README.md)。
 
 ## 阅读约定
 

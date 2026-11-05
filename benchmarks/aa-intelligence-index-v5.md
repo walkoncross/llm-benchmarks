@@ -38,7 +38,7 @@ AA Intelligence Index 家族自 2024-01 的 v1.0 起持续迭代；v5 是 2026-0
 | --- | --- | --- |
 | v4.0 | 2026-01 | 加入 GDPval-AA、AA-Omniscience、CritPt；移除 MMLU-Pro、LiveCodeBench、AIME 2025；四类各 25% |
 | v4.1 | 2026-06 | GDPval-AA v2；Terminal-Bench 2.1；τ³-Banking；移除 IFBench；Agents 34% / Coding 24% / Scientific Reasoning 24% / General 18% |
-| v4.2 | 2026-09 | 加入 AA-Briefcase、GDP.pdf；移除 GPQA Diamond；AA-LCR 升至 v1.1 |
+| v4.2 | 2026-09 | 加入 AA-Briefcase、GDP.pdf；移除 [GPQA Diamond](gpqa.md)；AA-LCR 升至 v1.1 |
 | v4.3 | 2026-09 | 加入 AutomationBench-AA、Terminal-Bench 4.0；移除 τ³-Banking、Terminal-Bench 2.1 |
 | v4.3.1 / v4.3.2 | 2026-09 / 2026-10 | 刷新 pairwise 评委面板；AA-Briefcase 与 GDPval-AA 的 Elo 改用 Crowd-BT 拟合 |
 | **v5.0** | **2026-10-27** | 加入 FrontierCode 2.0、Terminal-Bench-Science、HLE-Diamond；升级 AA-Omniscience v1.1、CritPt v2 hard subset；移除 GDPval-AA、SciCode、AA-LCR、HLE；四类改为各 25% |
