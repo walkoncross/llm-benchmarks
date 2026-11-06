@@ -1,0 +1,9 @@
+﻿rank,harness,model,effort,composite_score,cost_per_task_usd,time_per_task
+1,Claude Code,Claude Opus 5,High,37.50,19.70,17m31s
+2,Codex,GPT-6.1 Sol,Medium,36.15,2.85,11m32s
+3,Claude Code,Kimi K3.1 Pro,,28.92,2.89,21m13s
+4,Claude Code,DeepSeek V4.1 Flash,High,26.83,0.42,21m6s
+5,Claude Code,MiMo-V2.6-Pro,,26.40,0.56,39m1s
+6,Claude Code,Qwen3.8 Max,,23.30,6.43,35m36s
+7,Claude Code,GLM-5.3 Flash,High,21.33,0.38,28m46s
+8,Claude Code,MiniMax-M3,High,16.82,1.15,28m47s

@@ -41,6 +41,8 @@ yarn-error.log*
 *.zip
 *.parquet
 *.jsonl
+# 例外：SLE v1 官方任务索引快照（113 行 / 25 KB，可离线复核的小体积一手元数据，非大型数据集）
+!sources/sciences-last-exam/tasks-index-v1.jsonl
 datasets/
 dist/
 build/
