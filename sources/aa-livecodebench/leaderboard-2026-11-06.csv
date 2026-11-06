@@ -1,0 +1,28 @@
+rank,model,configuration,score_pct,score_raw,numerator_945,release_date,is_open_weights,deprecated
+1,Gemini 3 Pro Preview (High),High,91.75,0.917460317460317,867,2025-11-18,false,true
+2,Gemini 3 Flash Preview (Reasoning),Reasoning,90.79,0.907936507936508,858,2025-12-17,false,true
+3,DeepSeek V3.2 Speciale,,89.63,0.896296296296296,847,2025-12-01,true,true
+4,GLM-4.7 (Reasoning),Reasoning,89.42,0.894179894179894,845,2025-12-22,true,true
+4,GPT-5.2 (Medium),Medium,89.42,0.894179894179894,845,2025-12-11,false,true
+6,gpt-oss-120b (High),High,87.83,0.878306878306878,830,2025-08-05,true,false
+7,Claude Opus 4.5 (Reasoning),Reasoning,87.09,0.870899470899471,823,2025-11-24,false,true
+8,GPT-5.1 (High),High,86.77,0.867724867724868,820,2025-11-13,false,true
+8,MiMo-V2-Flash (Reasoning),Reasoning,86.77,0.867724867724868,820,2025-12-16,true,true
+10,DeepSeek V3.2 (Reasoning),Reasoning,86.24,0.862433862433862,815,2025-12-01,true,true
+11,o4-mini (High),High,85.93,0.859259259259259,812,2025-04-16,false,true
+12,Kimi K2 Thinking,,85.29,0.852910052910053,806,2025-11-06,true,true
+13,GPT-5.1 Codex (High),High,84.87,0.848677248677249,802,2025-11-13,false,true
+14,GPT-5 (High),High,84.55,0.845502645502646,799,2025-08-07,false,true
+15,GPT-5 Codex (High),High,84.02,0.84021164021164,794,2025-09-23,false,true
+16,GPT-5 mini (High),High,83.81,0.838095238095238,792,2025-08-07,false,true
+17,GPT-5.1 Codex mini (High),High,83.60,0.835978835978836,790,2025-11-13,false,true
+18,Grok 4 Fast (Reasoning),Reasoning,83.17,0.831746031746032,786,2025-09-19,false,true
+19,MiniMax-M2,,82.65,0.826455026455027,781,2025-10-26,true,true
+20,Grok 4.1 Fast (Reasoning),Reasoning,82.22,0.822222222222222,777,2025-11-19,false,true
+21,Grok 4,,81.90,0.819047619047619,774,2025-07-10,false,true
+22,ERNIE 5.0 Thinking Preview,,81.16,0.811640211640211,767,2025-11-13,false,false
+23,MiniMax-M2.1,,80.95,0.80952380952381,765,2025-12-23,true,true
+24,o3,,80.85,0.808465608465608,764,2025-04-16,false,false
+25,Apriel-v1.6-15B-Thinker,,80.74,0.807407407407407,763,2025-11-25,true,false
+26,Gemini 2.5 Pro,,80.11,0.801058201058201,757,2025-06-05,false,true
+27,DeepSeek V3.1 Terminus (Reasoning),Reasoning,79.79,0.797883597883598,754,2025-09-22,true,true
