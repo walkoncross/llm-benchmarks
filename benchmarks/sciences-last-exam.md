@@ -26,7 +26,7 @@ sources:
 >
 > **路径与日期约定**：正文反引号中的 `tasks/…`、`docs/…`、`releases/…`、`selected_tasks/…` 一律指**官方仓库** `Gen-Verse/Science-Last-Exam` 内的路径；本仓库路径统一写作 `sources/…`、`benchmarks/…`。README 索引的「提出时间」取官方宣告的公开下载开放日 `2026-11-06`；官网榜单发布于 `2026-11-04`，仓库首个 v1 release commit 为 `2026-10-29`，三者不是同一事件。
 
-**slug 与拆分决策**：文件名取官网域名通称 `sciences-last-exam`，避开正式名中的撇号，也避免与缩写相近的 [HLE](hle.md)、Agents' Last Exam 混淆。目前**只有单一 Release v1**：题量在 2026-10-30 至 11-05 间从 91 变到 113，但全部记在同一份 `docs/releases/v1.md` 的历史变更段里，官方未发布 v2，也未给出可独立成篇的第二套构念，故**不按 `AGENTS.md` §2.1 拆分**；这些变更改为在第 4.2 节作为口径沿革处理。SLE 与 [HLE](hle.md) 是**不同基准**（`agent` 端到端交付物 vs `qa` 闭卷专家问答），不是版本关系，分数更不可比。
+**slug 与拆分决策**：文件名取官网域名通称 `sciences-last-exam`，避开正式名中的撇号，也避免与缩写相近的 [HLE](hle.md)、[Agents' Last Exam](agents-last-exam.md) 混淆。目前**只有单一 Release v1**：题量在 2026-10-30 至 11-05 间从 91 变到 113，但全部记在同一份 `docs/releases/v1.md` 的历史变更段里，官方未发布 v2，也未给出可独立成篇的第二套构念，故**不按 `AGENTS.md` §2.1 拆分**；这些变更改为在第 4.2 节作为口径沿革处理。SLE 与 [HLE](hle.md) 是**不同基准**（`agent` 端到端交付物 vs `qa` 闭卷专家问答），不是版本关系，分数更不可比。
 
 ---
 
@@ -171,7 +171,7 @@ Agent 只拿到 instruction 与输入，在容器内跑到完成为止；参考�
 4. **测的是 model + harness 组合，不是纯模型。** 8 行里 7 行是 Claude Code、1 行是 Codex，effort 档位也不统一（High / Medium / 未标注）。跨模型比较同时混入了 CLI 版本、工具循环与推理档位差异。
 5. **v1 内部口径多次变动，历史结果不可直接串联。** 题量 88 → 91 → 96 → 113、composite 权重调整、EO 整组换题（官方明示新旧不可比）、E2E 纳入 selection 都发生在两周内。榜单页的 11-04 与仓库的 11-05 又有一天错位。
 6. **复现门槛高且环境差异会改变结果。** 16.5 GB 输入 + 224 MB gated 参考（人工审批）+ 数 GB 级 Scientific Computing 镜像 + GUI 需 QEMU/KVM（无 `/dev/kvm` 会退到 TCG、明显变慢）+ 六个需自行申请的研究数据库；`docker_compat` 模式下网络白名单失效；基建失败记为 unscored，官方要求先解决再报完整评测。
-7. **方法学只有自述文档，无独立论文或第三方复核。** arXiv 检索零结果，仓库 Citation 仅为 `@misc` 网站引用；BenchLM、LLMLearner、DataLearner 三家目录（2026-11-06 访问）**均无 SLE 条目**，因此没有二手交叉校验来源，也无从比对 Epoch AI 之类的独立审计结论。命名上还极易与 [HLE](hle.md)、Agents' Last Exam、Terminal-Bench-Science 0.1 混淆——它们是构念、题量与指标都不同的基准。
+7. **方法学只有自述文档，无独立论文或第三方复核。** arXiv 检索零结果，仓库 Citation 仅为 `@misc` 网站引用；BenchLM、LLMLearner、DataLearner 三家目录（2026-11-06 访问）**均无 SLE 条目**，因此没有二手交叉校验来源，也无从比对 Epoch AI 之类的独立审计结论。命名上还极易与 [HLE](hle.md)、[Agents' Last Exam](agents-last-exam.md)、Terminal-Bench-Science 0.1 混淆——它们是构念、题量与指标都不同的基准。
 
 ---
 

@@ -1,0 +1,16 @@
+﻿rank,harness,model,effort,pass_rate_pct,score_pct,total_runtime,output_tokens
+1,ALE-Claw,Gemini 4 Carbon,High,45.9,77.4,156h 47m,10.2M
+2,Kimi Code,Kimi 3.1 Pro,Max,43.4,74.4,61h 26m,8.5M
+3,Claude Code,claude-opus-5-5,Max,43.4,71.6,177h 11m,21.5M
+4,Codex,GPT-6 Astra,Max (Best),42.6,73.1,80h 12m,5.1M
+5,Codex,GPT-6.1 Terra,Max (Best),41.8,69.8,124h 36m,5.5M
+6,Claude Code,Tencent Hy4,High,41.0,70.3,104h 8m,19.6M
+7,ALE-Claw,Gemini 4 Argon,High,40.2,69.0,87h 4m,6.5M
+8,Muse Code,Muse Wonder 1.0,High,38.5,68.4,116h 27m,4.7M
+9,OpenClaw,DeepSeek V4.1 Flash (1017),High (Best),36.1,65.4,76h 51m,9.3M
+10,Kimi Code,Kimi K3,Max,35.2,63.0,107h 48m,7.5M
+11,Codex,gpt-5-6-sol,Max,30.3,48.4,78h 22m,3.1M
+12,Codex,MiniMax-M3.1-Flash,Max,29.5,58.9,117h 37m,17.4M
+13,Claude Code,MiniMax-M3.1-Flash,Max,29.5,57.9,122h 12m,18.1M
+14,ZCode,GLM 5.3,Max,26.2,54.4,111h 10m,17.4M
+15,Codex,gpt-5-6-luna,Off,5.7,26.5,40h 35m,1.1M
