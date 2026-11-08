@@ -1,0 +1,10 @@
+﻿rank,harness,model,setting,composite_score,cost_per_task_usd,time_per_task,hd_score,pp_score,sc_score,so_score,eo_score,e2e_score
+1,Claude Code,Claude Opus 5,high,37.50,19.70,17m31s,7.33,55,57,79,26.67,0.00
+2,Codex,GPT-6.1 Sol,medium,36.15,2.85,11m32s,4.92,51,57,64,40.00,0.00
+3,Claude Code,Kimi K3.1 Pro,—,28.92,2.89,21m13s,9.21,58,26,57,23.33,0.00
+4,Claude Code,DeepSeek V4.1 Flash,high,26.83,0.42,21m6s,21.28,55,39,29,16.67,0.00
+5,Claude Code,MiMo-V2.6-Pro,—,26.40,0.56,39m1s,12.41,49,30,57,10.00,0.00
+6,Claude Code,Qwen3.8 Max,—,23.30,6.43,35m36s,15.75,52,8.7,50,13.33,0.00
+7,Claude Code,GLM-5.3 Flash,high,21.33,0.38,28m46s,11.63,58,8.7,43,6.67,0.00
+8,Claude Code,MiniMax-M3,high,16.82,1.15,28m47s,3.61,43,22,29,3.33,0.00
+—,Codex,Gemini 4 Argon,default,,4.26,30m33s,,46.10,39.13,57.14,50.00,0.00
